@@ -1,0 +1,20 @@
+<jenkins.plugins.git.GitSCMSource>
+  <id>fd2380f8-d34f-48d5-8006-c34542bc4a89</id>
+  <remote>git://git.test/example.git</remote>
+  <credentialsId>e4d8c11a-0d24-472f-b86b-4b017c160e9a</credentialsId>
+  <remoteName>origin</remoteName>
+  <rawRefSpecs>+refs/heads/*:refs/remotes/origin/*</rawRefSpecs>
+  <includes>foo/*</includes>
+  <excludes>bar/*</excludes>
+  <ignoreOnPushNotifications>true</ignoreOnPushNotifications>
+  <extensions>
+    <hudson.plugins.git.extensions.impl.PreBuildMerge>
+      <options>
+        <mergeRemote>foo</mergeRemote>
+        <mergeTarget>bar</mergeTarget>
+        <mergeStrategy>recursive</mergeStrategy>
+        <fastForwardMode>NO_FF</fastForwardMode>
+      </options>
+    </hudson.plugins.git.extensions.impl.PreBuildMerge>
+  </extensions>
+</jenkins.plugins.git.GitSCMSource>

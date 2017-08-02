@@ -1,0 +1,18 @@
+target
+bin
+.classpath
+.settings
+.project
+*.iml
+*.ipr
+*.iws
+work
+release.properties
+pom.xml.releaseBackup
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# vim
+*.swp
+Session.vim
