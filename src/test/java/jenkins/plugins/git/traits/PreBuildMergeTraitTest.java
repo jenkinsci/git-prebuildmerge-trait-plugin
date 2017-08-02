@@ -1,7 +1,10 @@
 package jenkins.plugins.git.traits;
 
+import hudson.Util;
+import hudson.model.Descriptor;
 import hudson.plugins.git.UserMergeOptions;
 import hudson.plugins.git.extensions.GitSCMExtension;
+import jenkins.plugins.git.extensions.impl.PreBuildMerge;
 import jenkins.model.Jenkins;
 import jenkins.plugins.git.GitSCMSource;
 import jenkins.scm.api.trait.SCMSourceTrait;
@@ -13,11 +16,10 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.jvnet.hudson.test.JenkinsRule;
 
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class PreBuildMergeTraitTest {
@@ -37,14 +39,51 @@ public class PreBuildMergeTraitTest {
                 getClass().getResource(getClass().getSimpleName() + "/" + dataSet + ".xml"));
     }
 
+    public List<GitSCMExtensionTraitDescriptor> descriptors() {
+        List<GitSCMExtensionTraitDescriptor> list = new ArrayList<>();
+        for (Descriptor<SCMSourceTrait> d : SCMSourceTrait.all()) {
+            if (d instanceof GitSCMExtensionTraitDescriptor) {
+                list.add((GitSCMExtensionTraitDescriptor) d);
+            }
+        }
+        return list;
+    }
+
     @Test
-    public void pimpped_out() throws Exception {
+    public void extensionClassesOverrideEquals() {
+        for (GitSCMExtensionTraitDescriptor d : descriptors()) {
+            assertThat(d.getExtensionClass().getName() + " overrides equals(Object)",
+                    Util.isOverridden(GitSCMExtension.class, d.getExtensionClass(), "equals", Object.class),
+                    is(true));
+        }
+    }
+
+    @Test
+    public void extensionClassesOverrideHashCode() {
+        for (GitSCMExtensionTraitDescriptor d : descriptors()) {
+            assertThat(d.getExtensionClass().getName() + " overrides hashCode()",
+                    Util.isOverridden(GitSCMExtension.class, d.getExtensionClass(), "hashCode"),
+                    is(true));
+        }
+    }
+
+    @Test
+    public void extensionClassesOverrideToString() {
+        for (GitSCMExtensionTraitDescriptor d : descriptors()) {
+            assertThat(d.getExtensionClass().getName() + " overrides toString()",
+                    Util.isOverridden(GitSCMExtension.class, d.getExtensionClass(), "toString"),
+                    is(true));
+        }
+    }
+
+    @Test
+    public void prebuildmerge() throws Exception {
         GitSCMSource instance = load();
         assertThat(instance.getId(), is("fd2380f8-d34f-48d5-8006-c34542bc4a89"));
         assertThat(instance.getRemote(), is("git://git.test/example.git"));
         assertThat(instance.getCredentialsId(), is("e4d8c11a-0d24-472f-b86b-4b017c160e9a"));
         assertThat(instance.getTraits(),
-                containsInAnyOrder(
+                hasItem(
                         Matchers.<SCMSourceTrait>allOf(
                                 instanceOf(PreBuildMergeTrait.class),
                                 hasProperty("extension",

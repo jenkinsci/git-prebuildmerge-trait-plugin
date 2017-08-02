@@ -15,7 +15,7 @@
     </license>
   </licenses>
 
-  <artifactId>git-prebuildmerge-trait-plugin</artifactId>
+  <artifactId>git-prebuildmerge-trait</artifactId>
   <version>1.0</version>
   <packaging>hpi</packaging>
   <name>Jenkins Git PreMerge Trait Plugin</name>
@@ -29,7 +29,6 @@
     <no-test-jar>false</no-test-jar>
     <concurrency>1C</concurrency>
     <findbugs.failOnError>false</findbugs.failOnError>
-    <workflow.version>1.14.2</workflow.version>
     <scm-api-plugin.version>2.2.0</scm-api-plugin.version>
   </properties>
 
@@ -41,8 +40,8 @@
           <artifactId>maven-enforcer-plugin</artifactId>
         </plugin>
         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -102,6 +101,18 @@
             </configuration>
           </execution>
         </executions>
+        <configuration>
+          <rules>
+            <requireUpperBoundDeps>
+              <excludes combine.children="append">
+                <!-- structs requests 1.9, core requests 1.7 -->
+                <exclude>org.jenkins-ci:annotation-indexer</exclude>
+                <!-- workflow-cps requests 1.1.1, core 2.60.1 requests 1.2.1 -->
+                <exclude>org.jenkins-ci.ui:jquery-detached</exclude>
+              </excludes>
+            </requireUpperBoundDeps>
+          </rules>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -124,8 +135,20 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>git</artifactId>
-      <version>3.5.1</version>
+      <version>3.5.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>scm-api</artifactId>
+      <version>${scm-api-plugin.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>git-client</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>junit</artifactId>
@@ -133,10 +156,11 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-    <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    <connection>scm:git:git://github.com/arthurvanduynhoven/${project.artifactId}-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:arthurvanduynhoven/${project.artifactId}-plugin.git</developerConnection>
+    <url>http://github.com/arthurvanduynhoven/${project.artifactId}-plugin</url>
     <tag>HEAD</tag>
   </scm>
 

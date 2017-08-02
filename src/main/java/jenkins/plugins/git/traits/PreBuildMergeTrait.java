@@ -24,13 +24,14 @@
 package jenkins.plugins.git.traits;
 
 import hudson.Extension;
-import jenkins.scm.api.trait.SCMSourceTrait;
+import jenkins.plugins.git.extensions.impl.PreBuildMerge;
 import org.kohsuke.stapler.DataBoundConstructor;
+import jenkins.scm.api.trait.SCMSourceTrait;
 
 /**
  * Exposes {@link PreBuildMerge} as a {@link SCMSourceTrait}.
  *
- * @since 3.5.0
+ * @since 3.5.1
  */
 public class PreBuildMergeTrait extends GitSCMExtensionTrait<PreBuildMerge> {
     /**
