@@ -24,7 +24,10 @@
 package jenkins.plugins.git.traits;
 
 import hudson.Extension;
-import jenkins.plugins.git.extensions.impl.PreBuildMerge;
+import hudson.plugins.git.extensions.impl.PreBuildMerge;
+import jenkins.plugins.git.GitSCMSource;
+import jenkins.scm.api.SCMSource;
+import jenkins.scm.impl.trait.Discovery;
 import org.kohsuke.stapler.DataBoundConstructor;
 import jenkins.scm.api.trait.SCMSourceTrait;
 
@@ -45,16 +48,25 @@ public class PreBuildMergeTrait extends GitSCMExtensionTrait<PreBuildMerge> {
     }
 
     /**
-     * Our {@link hudson.model.Descriptor}
+     * Our {@link hudson.model.Descriptor}.
      */
     @Extension
     public static class DescriptorImpl extends GitSCMExtensionTraitDescriptor {
+
         /**
          * {@inheritDoc}
          */
         @Override
         public String getDisplayName() {
             return "Merge before build";
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Class<? extends SCMSource> getSourceClass() {
+            return GitSCMSource.class;
         }
     }
 }

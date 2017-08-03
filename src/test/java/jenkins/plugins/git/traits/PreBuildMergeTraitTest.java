@@ -4,7 +4,7 @@ import hudson.Util;
 import hudson.model.Descriptor;
 import hudson.plugins.git.UserMergeOptions;
 import hudson.plugins.git.extensions.GitSCMExtension;
-import jenkins.plugins.git.extensions.impl.PreBuildMerge;
+import hudson.plugins.git.extensions.impl.PreBuildMerge;
 import jenkins.model.Jenkins;
 import jenkins.plugins.git.GitSCMSource;
 import jenkins.scm.api.trait.SCMSourceTrait;
