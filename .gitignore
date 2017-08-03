@@ -12,6 +12,7 @@ pom.xml.releaseBackup
 .idea
 *.sublime-project
 *.sublime-workspace
+.DS_Store
 
 # vim
 *.swp

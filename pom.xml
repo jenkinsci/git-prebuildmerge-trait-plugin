@@ -158,16 +158,16 @@
   </dependencies>
 
   <scm>
-    <connection>scm:git:git://github.com/arthurvanduynhoven/${project.artifactId}-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:arthurvanduynhoven/${project.artifactId}-plugin.git</developerConnection>
-    <url>http://github.com/arthurvanduynhoven/${project.artifactId}-plugin</url>
+    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
+    <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
     <tag>HEAD</tag>
   </scm>
 
   <pluginRepositories>
-     <pluginRepository>
-       <id>repo.jenkins-ci.org</id>
-       <url>https://repo.jenkins-ci.org/public/</url>
-     </pluginRepository>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </pluginRepository>
   </pluginRepositories>
 </project>
