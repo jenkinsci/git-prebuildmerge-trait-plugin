@@ -18,8 +18,8 @@
   <artifactId>git-prebuildmerge-trait</artifactId>
   <version>1.0</version>
   <packaging>hpi</packaging>
-  <name>Jenkins Git PreMerge Trait Plugin</name>
-  <description>Adds Git PreMerge Trait to Git Plugin</description>
+  <name>Git PreBuildMerge Trait Plugin</name>
+  <description>Adds PreBuildMerge Trait to Git Plugin</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin</url>
   <inceptionYear>2017</inceptionYear>
 
