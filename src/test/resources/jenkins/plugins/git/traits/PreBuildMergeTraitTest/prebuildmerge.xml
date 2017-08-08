@@ -8,13 +8,13 @@
   <excludes>bar/*</excludes>
   <ignoreOnPushNotifications>true</ignoreOnPushNotifications>
   <extensions>
-    <jenkins.plugins.git.extensions.impl.PreBuildMerge>
+    <hudson.plugins.git.extensions.impl.PreBuildMerge>
       <options>
         <mergeRemote>foo</mergeRemote>
         <mergeTarget>bar</mergeTarget>
         <mergeStrategy>recursive</mergeStrategy>
         <fastForwardMode>NO_FF</fastForwardMode>
       </options>
-    </jenkins.plugins.git.extensions.impl.PreBuildMerge>
+    </hudson.plugins.git.extensions.impl.PreBuildMerge>
   </extensions>
 </jenkins.plugins.git.GitSCMSource>
